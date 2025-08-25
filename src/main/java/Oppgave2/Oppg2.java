@@ -17,13 +17,23 @@ public class Oppg2 {
                 new Ansatt("ansatt5", "etternavn5", Kjonn.MALE, "Stilling", 1250000)
         );
 
+        System.out.println("Ansatte før tillegg");
+        skrivUt(ansatte);
+        System.out.println();
+
         //Fast kronetillegg
         int kronetillegg = 50000;
         lonnsoppgjor(ansatte, a -> a.getAarslonn() + kronetillegg);
+        System.out.println("Ansatte etter kronetillegg");
+        skrivUt(ansatte);
+        System.out.println();
 
         //Fast prosenttillegg
         double prosenttillegg = 1.05;
         lonnsoppgjor(ansatte, a -> (int)(a.getAarslonn() * prosenttillegg));
+        System.out.println("Ansatte etter prosenttillegg");
+        skrivUt(ansatte);
+        System.out.println();
 
         //Fast kronetillegg vist lav lønn
         int lavLonnKronetillegg = 20000;
@@ -35,6 +45,9 @@ public class Oppg2 {
                 return a.getAarslonn();
             }
         });
+        System.out.println("Ansatte etter lavLonnKronetillegg");
+        skrivUt(ansatte);
+        System.out.println();
 
         //Fast prosenttillegg vist mann
         double mannTilegg = 1.5;
@@ -45,7 +58,7 @@ public class Oppg2 {
                 return a.getAarslonn();
             }
         });
-
+        System.out.println("Ansatte etter manntilegg");
         skrivUt(ansatte);
 
     }
