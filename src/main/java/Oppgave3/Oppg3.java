@@ -4,17 +4,19 @@ import Oppgave2.Kjonn;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Oppg3 {
     public static void main(String[] args) {
 
         List<Ansatt> ansatte = Arrays.asList(
-                new Ansatt("ansatt1", "etternavn1", Kjonn.MALE, "Stilling", 850000),
+                new Ansatt("ansatt1", "etternavn1", Kjonn.MALE, "sjef", 850000),
                 new Ansatt("ansatt2", "etternavn2", Kjonn.FEMALE, "Stilling", 950000),
                 new Ansatt("ansatt3", "etternavn3", Kjonn.MALE, "Sjef", 1050000),
                 new Ansatt("ansatt4", "etternavn4", Kjonn.FEMALE, "Stilling", 1150000),
-                new Ansatt("ansatt5", "etternavn5", Kjonn.MALE, "Sjef", 1250000)
+                new Ansatt("ansatt5", "etternavn5", Kjonn.MALE, "Sjef", 850000)
         );
 
         /*
@@ -69,6 +71,20 @@ public class Oppg3 {
 
         //g
         int minLonn = ansatte.stream()
-                .
+                .mapToInt(Ansatt::getAarslonn)
+                .min()
+                .orElse(0);
+        System.out.println(minLonn);
+        List<Ansatt> minstLonnAnsatt = ansatte.stream()
+                .filter(a -> a.getAarslonn() == minLonn)
+                .collect(Collectors.toList());
+        System.out.println(minstLonnAnsatt);
+
+        //h
+        int sum = IntStream.range(1, 1000)
+                .filter(n -> n % 3 == 0 || n % 5 == 0)
+                .sum();
+        System.out.println(sum);
     }
+
 }
